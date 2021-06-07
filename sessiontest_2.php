@@ -19,6 +19,8 @@ $_SESSION['date'] = date('c');
 echo $_SESSION['date'];
 echo '<br>';
 
+$_SESSION = [];
+
 if(isset($_COOKIE['PHPSESSID'])){
   setcookie('PHPSESSID', '', time() - 3600, '/');
 }
