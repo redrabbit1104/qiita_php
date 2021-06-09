@@ -14,50 +14,33 @@ session_start();
   
 <?php
 
-$_SESSION['bgcolor'] = 'yellow';
-$_SESSION['animal']   = 'dog';
-$_SESSION['time']     = time();
+if(!isset($_SESSION['visited'])){
+  echo '初回訪問です';
 
+  $_SESSION['visited'] = 1;
+  $_SESSION['date'] = date('c');
+} else{
 
-echo $_SESSION['bgcolor'];
-echo '<br>';
-echo $_SESSION['animal'];
-echo '<br>';
-echo $_SESSION['time'];
-echo '<br>';
+  $visited = $_SESSION['visited'];
+  $visited++;
+  $_SESSION['visited'] = $visited;
 
-var_dump(isset($_SESSION['bgcolor']));
+  echo $_SESSION['visited'].'回目の訪問です<br>';
 
-unset($_SESSION['bgcolor']);
-echo $_SESSION['bgcolor'];
+  if(isset($_SESSION['date'])){
+    echo '前回訪問は'.$_SESSION['date'].'です';
+    $_SESSION['date'] = date('c');
+  }
+}
 
-// if(!isset($_SESSION['visited'])){
-//   echo '初回訪問です';
+setcookie("id", '', time() -1800, '/');
+echo '<pre>';
+var_dump($_SESSION);
+echo '</pre>';
 
-//   $_SESSION['visited'] = 1;
-//   $_SESSION['date'] = date('c');
-// } else{
-
-//   $visited = $_SESSION['visited'];
-//   $visited++;
-//   $_SESSION['visited'] = $visited;
-
-//   echo $_SESSION['visited'].'回目の訪問です<br>';
-
-//   if(isset($_SESSION['date'])){
-//     echo '前回訪問は'.$_SESSION['date'].'です';
-//     $_SESSION['date'] = date('c');
-//   }
-// }
-
-// setcookie("id", '', time() -1800, '/');
-// echo '<pre>';
-// var_dump($_SESSION);
-// echo '</pre>';
-
-// echo '<pre>';
-// var_dump($_COOKIE);
-// echo '</pre>'
+echo '<pre>';
+var_dump($_COOKIE);
+echo '</pre>'
 ?>
 
 </body>

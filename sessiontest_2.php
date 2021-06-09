@@ -14,27 +14,24 @@ session_start();
   
 <?php
 
-$_SESSION['date'] = date('c');
+  echo 'セッション破棄しました';
 
-echo $_SESSION['date'];
-echo '<br>';
+  $_SESSION = [];
+  if(isset($_COOKIE['PHPSESSID'])){
+   setcookie('PHPSESSID', '', time() - 1800, '/');
+  }
 
-$_SESSION = [];
+  session_destroy();
 
-if(isset($_COOKIE['PHPSESSID'])){
-  setcookie('PHPSESSID', '', time() - 3600, '/');
-}
+  echo 'セッション';
+  echo '<pre>';
+  var_dump($_SESSION);
+  echo '</pre>';
 
-session_destroy();
-
-// setcookie("id", '', time() -1800, '/');
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
-
-echo '<pre>';
-var_dump($_COOKIE);
-echo '</pre>'
+  echo 'クッキー';
+  echo '<pre>';
+  var_dump($_COOKIE);
+  echo '</pre>'
 ?>
 
 </body>

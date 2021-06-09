@@ -9,9 +9,9 @@
 <body>
 
 <?php
-  const DB_HOST = 'mysql:dbname=time_card_app;host=127.0.0.1;charset=utf8';
+  const DB_HOST = 'mysql:dbname=time_card_app;host=localhost:8889;charset=utf8';
   const DB_USER = 'time_card_user';
-  const DB_PASSWORD = 'wlfkfakfk123'; 
+  const DB_PASSWORD = 'wlfkfakfk12'; 
 
 
 
