@@ -2,7 +2,7 @@
 
 session_start();
 
-require 'validation1.php';
+require 'validation2.php';
 
 header('X-FRAME-OPTIONS:DENY');
 
@@ -48,7 +48,7 @@ if (!empty($_POST["btn_submit"])) {
         }
         $token = $_SESSION['csrfToken'];
         ?>
-        
+
         <?php if (!empty($error_messages) && !empty($_POST['btn_confirm'])) : ?>
             <?php echo '<ul>'; ?>
             <?php
@@ -64,9 +64,19 @@ if (!empty($_POST["btn_submit"])) {
             名前
             <input type="text" name="input_name">
             <br>
+            免許
+            <input type="radio" name="licence" value="0" <?php if (!empty($_POST['licence']) && $_POST['licence'] === '0') {
+                                                                echo 'checked';
+                                                            } ?>>あり
+            <input type="radio" name="licence" value="1" <?php if (!empty($_POST['licence']) && $_POST['licence'] === '1') {
+                                                                echo 'checked';
+                                                            } ?>>なし
+            <br>
 
             <input type="submit" name="btn_confirm" value="confirm">
             <input type="hidden" name="csrf" value="<?php echo $token; ?>">
+
+
         </form>
     <?php endif; ?>
 
@@ -79,9 +89,18 @@ if (!empty($_POST["btn_submit"])) {
                 名前
                 <?php echo sp_chars($_POST["input_name"]); ?>
                 <br>
+                免許
+                <?php if ($_POST['licence'] === '0') {
+                    echo 'あり';
+                }
+                if ($_POST['licence'] === '1') {
+                    echo 'なし';
+                }
+                ?>
 
                 <input type="submit" name="btn_submit" value="submit">
-                <input type="hidden" name="input_name" value="<?php echo sp_chars($_POST['your_name']); ?>">
+                <input type="hidden" name="input_name" value="<?php echo sp_chars($_POST['input_name']); ?>">
+                <input type="hidden" name="licence" value="<?php echo sp_chars($_POST['licence']); ?>">
                 <input type="hidden" name="csrf" value="<?php echo sp_chars($_POST['csrf']); ?>">
             </form>
         <?php endif; ?>

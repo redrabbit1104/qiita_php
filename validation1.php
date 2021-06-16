@@ -10,5 +10,3 @@ function validation($filter_value){   //$_POST 連想配列
 
     return $messages;
 }
-
-
