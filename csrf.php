@@ -62,8 +62,8 @@ if (!empty($_POST["btn_submit"])) {
         入力画面
         <form method="POST" action="csrf.php">
             名前
-            <input type="text" name="input_name" value="<?php if (!empty($_POST['input_name'])) {
-                                                            echo sp_chars($_POST['input_name']);
+            <input type="text" name="your_name" value="<?php if (!empty($_POST['your_name'])) {
+                                                            echo sp_chars($_POST['your_name']);
                                                         } ?>">
             <br>
             免許
@@ -97,7 +97,7 @@ if (!empty($_POST["btn_submit"])) {
             確認画面
             <form method="POST" action="csrf.php">
                 名前
-                <?php echo sp_chars($_POST["input_name"]); ?>
+                <?php echo sp_chars($_POST["your_name"]); ?>
                 <br>
                 免許
                 <?php if ($_POST['licence'] === '0') {
@@ -112,7 +112,7 @@ if (!empty($_POST["btn_submit"])) {
                 <?php echo sp_chars($_POST["url"]); ?>
 
                 <input type="submit" name="btn_submit" value="submit">
-                <input type="hidden" name="input_name" value="<?php echo sp_chars($_POST['input_name']); ?>">
+                <input type="hidden" name="your_name" value="<?php echo sp_chars($_POST['your_name']); ?>">
                 <input type="hidden" name="licence" value="<?php echo sp_chars($_POST['licence']); ?>">
                 <input type="hidden" name="email" value="<?php echo sp_chars($_POST['email']); ?>">
                 <input type="hidden" name="url" value="<?php echo sp_chars($_POST['url']); ?>">
@@ -124,6 +124,9 @@ if (!empty($_POST["btn_submit"])) {
 
     <?php if ($page_flag === 2) : ?>
         <?php if ($_POST['csrf'] === $_SESSION['csrfToken']) : ?>
+
+        <?php require 'insert2.php';
+           insertPost($_POST); ?>
             送信完了。
             <?php unset($_SESSION['csrfToken']); ?>
         <?php endif; ?>

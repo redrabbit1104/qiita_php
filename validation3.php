@@ -6,8 +6,8 @@ function validation($filter_value)
     $messages = [];
 
     if (
-        empty($filter_value['input_name']) ||
-        16 < mb_strlen($filter_value['input_name'])   // 追記
+        empty($filter_value['your_name']) ||
+        16 < mb_strlen($filter_value['your_name'])   // 追記
     ) {
         $messages[] = '8文字以下の「氏名」を入力してください。'; //修正
     }

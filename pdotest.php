@@ -13,8 +13,6 @@
   const DB_USER = 'time_card_user';
   const DB_PASSWORD = 'wlfkfakfk12'; 
 
-
-
   // 例外処理 Exception
   try{
     $pdo = new PDO(DB_HOST, DB_USER, DB_PASSWORD, [ 
